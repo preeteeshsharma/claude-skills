@@ -1,0 +1,12 @@
+{
+  "name": "claude-skills",
+  "description": "Personal Claude Code skills library - interview research and more",
+  "version": "1.0.0",
+  "author": {
+    "name": "preeteeshsharma",
+    "email": ""
+  },
+  "homepage": "https://github.com/preeteeshsharma/claude-skills",
+  "repository": "https://github.com/preeteeshsharma/claude-skills",
+  "license": "MIT"
+}
