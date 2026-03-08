@@ -14,38 +14,43 @@ Researches real-world interview processes and questions for specific companies a
 - **Process** — full round-by-round breakdown (format, duration, what each round tests)
 - **Questions** — actual questions reported by candidates, categorized, each with a source link
 
-## Installing on a new machine (Claude Code)
+### interview-prep-assistant
 
-1. Clone this repo
-2. Copy the skill into your Claude plugins directory:
-   ```
-   xcopy /E /I skills\interview-research "%USERPROFILE%\.claude\plugins\cache\local\interview-research\1.0.0\skills\interview-research"
-   ```
-3. Register the plugin by adding this entry to `%USERPROFILE%\.claude\plugins\installed_plugins.json` under `"plugins"`:
-   ```json
-   "interview-research@local": [
-     {
-       "scope": "user",
-       "installPath": "C:\\Users\\<YOUR_USERNAME>\\.claude\\plugins\\cache\\local\\interview-research\\1.0.0",
-       "version": "1.0.0",
-       "installedAt": "2026-03-08T07:00:00.000Z",
-       "lastUpdated": "2026-03-08T07:00:00.000Z",
-       "gitCommitSha": ""
-     }
-   ]
-   ```
-   *(Replace `<YOUR_USERNAME>` with your Windows username)*
-4. Run `/reload-plugins` in Claude Code
+Socratic tutor for working through interview questions compiled by `interview-research`. Guides you to think, not just read solutions. Supports LeetCode-style problems, local integration/plumbing problems, and code review.
+
+**Triggers on:** "let's start prep", sharing a compiled question list, "scaffold this question", "review my code".
+
+**Requires:** output from `interview-research` as input.
+
+**Modes:**
+- **LeetCode** — structured breakdown, pattern hints, hint ladder (name → explain → skeleton → chunk)
+- **Local/Integration** — Maven scaffold (Java 21, OkHttp, Gson), Socratic guidance through parts
+- **Code Review** — structured feedback (correctness, pattern fit, one improvement, what's solid)
+
+---
+
+## Installing (Claude Code)
+
+Add the marketplace and install the plugin:
+
+```
+/add-marketplace preeteeshsharma/claude-skills
+/install-plugin claude-skills
+```
+
+Both skills will be available immediately as `claude-skills:interview-research` and `claude-skills:interview-prep-assistant`.
 
 ## Installing on Claude Web
 
-1. Open the `skills/interview-research/SKILL.md` file
+1. Open `skills/<skill-name>/SKILL.md`
 2. Copy everything after the `---` frontmatter block
 3. Create a Claude Project → paste into project instructions
+
+---
 
 ## Adding new skills
 
 1. Create `skills/<skill-name>/SKILL.md`
 2. Add evals to `skills/<skill-name>/evals/evals.json`
-3. Package with skill-creator if needed
+3. Bump the version in `.claude-plugin/plugin.json`
 4. Update this README
