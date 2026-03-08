@@ -44,12 +44,12 @@ Edit `%USERPROFILE%\.claude\settings.json` and add these two entries:
     }
   },
   "enabledPlugins": {
-    "claude-skills@claude-skills": true
+    "interview-prep@claude-skills": true
   }
 }
 ```
 
-Then run `/reload-plugins` in Claude Code. Both skills will be available as `claude-skills:interview-research` and `claude-skills:interview-prep-assistant`.
+Then run `/reload-plugins` in Claude Code. Both skills will be available as `interview-prep:interview-research` and `interview-prep:interview-prep-assistant`.
 
 ## Installing on Claude Web
 

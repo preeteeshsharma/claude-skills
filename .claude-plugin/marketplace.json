@@ -7,8 +7,8 @@
   },
   "plugins": [
     {
-      "name": "claude-skills",
-      "description": "Personal Claude Code skills library - interview research and more",
+      "name": "interview-prep",
+      "description": "Interview research and prep assistant skills for Claude Code",
       "version": "1.0.0",
       "source": "./",
       "author": {
