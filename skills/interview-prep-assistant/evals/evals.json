@@ -1,0 +1,78 @@
+{
+  "skill_name": "interview-prep-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Stripe integration round prep assist: based on interview-research skill i have the following questions compiled:\n\n1. The Invoicing Service (Consuming External APIs) - 3 parts: file parsing, API pagination with next_page_token, business logic with deduplication by event_id\n2. Payment Gateway Proxy - fault tolerance: wrapper class, timeout + status check, circuit breaker\n3. Subscription Tracker - map wrapper, get_active_users O(1), command string parser\n\nLet's start with the Invoicing Service.",
+      "expected_output": "Should give a structured breakdown of the Invoicing Service question (restate, inputs/outputs, edge cases), classify it as Local/integration, and generate Maven project scaffolding with pom.xml, skeleton class with Part 1/2/3 TODOs, and sample customer_ids.json. Should NOT write the implementation.",
+      "assertions": [
+        {
+          "name": "does_not_give_complete_solution",
+          "description": "Response must not contain a working fetchAllPages() or full InvoicingService implementation with real logic filled in"
+        },
+        {
+          "name": "generates_pom_xml",
+          "description": "Response includes a pom.xml with Java 21, OkHttp, and Gson dependencies"
+        },
+        {
+          "name": "generates_skeleton_class",
+          "description": "Response includes a Java skeleton class with TODOs marking Part 1, Part 2, Part 3"
+        },
+        {
+          "name": "creates_sample_input_file",
+          "description": "Response includes a sample customer_ids.json or similar input resource file"
+        },
+        {
+          "name": "asks_for_candidate_plan",
+          "description": "Response ends with a question asking the candidate what their plan is for Part 1, not just dumping the scaffold"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "ok so i've read the invoicing service question. for Part 1 i think i'll just use a Scanner to read the file, then call the API in a for loop. my plan is to make the HTTP call inside the loop and print the result each time.",
+      "expected_output": "Should not correct them harshly. Should acknowledge the Scanner idea but nudge toward Files.readAllLines / InputStream since the question flags it as a failure point. Should ask about the JSON parsing approach before they write code. Should NOT rewrite their plan or give the implementation.",
+      "assertions": [
+        {
+          "name": "mentions_files_api_or_inputstream",
+          "description": "Response mentions Files.readAllLines, Files.readString, or InputStream as a more reliable alternative, since the question explicitly flags Scanner as a common failure point"
+        },
+        {
+          "name": "does_not_write_implementation",
+          "description": "Response does not write a complete readFile() or main() method"
+        },
+        {
+          "name": "asks_followup_question",
+          "description": "Response asks at least one follow-up question about their approach (e.g., how will you parse the JSON? what format is the file?)"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I finished Part 1 and Part 2 of the Invoicing Service. Here's my code for Part 2:\n\n```java\nprivate List<UsageEvent> fetchAllUsage(String customerId) throws IOException {\n    List<UsageEvent> all = new ArrayList<>();\n    String nextPage = null;\n    do {\n        String url = BASE_URL + customerId;\n        if (nextPage != null) url += \"?page=\" + nextPage;\n        Response response = client.newCall(new Request.Builder().url(url).build()).execute();\n        UsagePage page = gson.fromJson(response.body().string(), UsagePage.class);\n        all.addAll(page.events());\n        nextPage = page.nextPageToken();\n    } while (nextPage != null);\n    return all;\n}\n```\n\nCan you review this?",
+      "expected_output": "Should review the code using the structured format (Correctness, Pattern fit, One thing to tighten, What's solid). Should flag: response.body() can be null (NPE risk), no timeout on the OkHttpClient, no retry on failure. Should NOT rewrite the method. Should note what's solid (pagination loop structure is correct).",
+      "assertions": [
+        {
+          "name": "uses_review_format",
+          "description": "Response uses the structured review format with Correctness, Pattern fit, One thing to tighten, What's solid sections"
+        },
+        {
+          "name": "flags_null_body",
+          "description": "Response flags the response.body() null risk (NPE)"
+        },
+        {
+          "name": "flags_missing_timeout",
+          "description": "Response mentions missing timeout on the HTTP client"
+        },
+        {
+          "name": "does_not_rewrite_method",
+          "description": "Response does not produce a fully corrected fetchAllUsage() method — it describes issues and lets the candidate fix them"
+        },
+        {
+          "name": "acknowledges_correct_pagination_pattern",
+          "description": "Response notes that the do-while pagination loop structure is correct"
+        }
+      ]
+    }
+  ]
+}
