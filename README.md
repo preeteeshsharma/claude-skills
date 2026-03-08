@@ -31,14 +31,25 @@ Socratic tutor for working through interview questions compiled by `interview-re
 
 ## Installing (Claude Code)
 
-Add the marketplace and install the plugin:
+Edit `%USERPROFILE%\.claude\settings.json` and add these two entries:
 
-```
-/add-marketplace preeteeshsharma/claude-skills
-/install-plugin claude-skills
+```json
+{
+  "extraKnownMarketplaces": {
+    "claude-skills": {
+      "source": {
+        "source": "github",
+        "repo": "preeteeshsharma/claude-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "claude-skills@claude-skills": true
+  }
+}
 ```
 
-Both skills will be available immediately as `claude-skills:interview-research` and `claude-skills:interview-prep-assistant`.
+Then run `/reload-plugins` in Claude Code. Both skills will be available as `claude-skills:interview-research` and `claude-skills:interview-prep-assistant`.
 
 ## Installing on Claude Web
 
