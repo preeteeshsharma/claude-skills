@@ -10,7 +10,7 @@
       "name": "interview-prep",
       "description": "Interview research and prep assistant skills for Claude Code",
       "version": "1.0.0",
-      "source": "./",
+      "source": "./plugins/interview-prep/",
       "author": {
         "name": "preeteeshsharma",
         "email": ""

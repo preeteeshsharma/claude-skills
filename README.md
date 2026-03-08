@@ -59,9 +59,31 @@ Then run `/reload-plugins` in Claude Code. Both skills will be available as `int
 
 ---
 
-## Adding new skills
+## Repo structure
 
-1. Create `skills/<skill-name>/SKILL.md`
-2. Add evals to `skills/<skill-name>/evals/evals.json`
-3. Bump the version in `.claude-plugin/plugin.json`
+```
+claude-skills/
+├── .claude-plugin/
+│   └── marketplace.json        # marketplace listing all plugins
+├── plugins/
+│   └── interview-prep/
+│       ├── .claude-plugin/
+│       │   └── plugin.json     # plugin metadata
+│       └── skills/
+│           ├── interview-research/
+│           └── interview-prep-assistant/
+└── README.md
+```
+
+## Adding a new skill to interview-prep
+
+1. Create `plugins/interview-prep/skills/<skill-name>/SKILL.md`
+2. Add evals to `plugins/interview-prep/skills/<skill-name>/evals/evals.json`
+3. Update this README
+
+## Adding a new plugin
+
+1. Create `plugins/<plugin-name>/.claude-plugin/plugin.json`
+2. Add skills under `plugins/<plugin-name>/skills/`
+3. Add the plugin entry to `.claude-plugin/marketplace.json` with `"source": "./plugins/<plugin-name>/"`
 4. Update this README
