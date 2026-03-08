@@ -1,0 +1,23 @@
+{
+  "skill_name": "interview-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a Stripe interview coming up for an L3 backend engineer role. Can you research what their full interview loop looks like? I want to know all the rounds, format, and what each round tests.",
+      "expected_output": "A structured breakdown of Stripe's L3 backend interview loop with rounds (recruiter screen, technical phone screen, system design, coding rounds, etc.), duration, format, what each round tests, and a sourced table of links from Blind, Glassdoor, Reddit, LeetCode Discuss.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "What questions do people get asked in Cloudflare's HM round for a Senior Backend Engineer? I have that round next week and want to prepare.",
+      "expected_output": "A compiled list of questions from the Cloudflare HM round sourced from real candidate threads on Blind, Reddit, Glassdoor, LeetCode Discuss. Should include behavioral/culture questions, categorized, each with a source link. Should also include patterns and preparation tips from candidates.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "What's the Amazon bar raiser round like for an SDE2? What kind of questions do they ask and what are they really testing for?",
+      "expected_output": "Information about Amazon's bar raiser round specifically for SDE2 - behavioral leadership principle questions, format (who the interviewer is, duration), what they're evaluating, actual questions candidates reported being asked, with sources. Should flag the difference between generic advice and confirmed firsthand accounts.",
+      "files": []
+    }
+  ]
+}
