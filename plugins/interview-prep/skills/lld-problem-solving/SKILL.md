@@ -55,39 +55,39 @@ Output two lists before touching entities:
 
 ---
 
-## Phase 2 — Entities & Relationships (~3 min)
+## Phase 2 — Data Models (~3 min)
 
-Identify core **nouns** from requirements — entities that own state or enforce rules.
+Identify the **stored entities** first — nouns from requirements that map to a repository or in-memory store. These are pure data; no behaviour beyond construction validation.
 
-For each entity ask:
-- Does it hold **mutable state** over time? → entity
-- Is it **immutable and identified by value**? → value object → use a `record`
-- Does it wrap a primitive to prevent mixing up IDs? → typed wrapper → use a `record`
+For each ask:
+- Is it **immutable and identified by value**? → `record`
+- Does it wrap a primitive to prevent ID mix-ups? → typed wrapper `record`
+- Does it hold **mutable state** that changes over time? → class with controlled mutation
 
 ```java
 // ✅ typed wrapper — compiler prevents mixing up IDs
-record PlaylistId(String value) {
-    PlaylistId { if (value == null || value.isBlank()) throw new IllegalArgumentException("PlaylistId required"); }
+record TrackId(String value) {
+    TrackId { if (value == null || value.isBlank()) throw new IllegalArgumentException(); }
 }
-// ✅ value object — immutable, validated at construction, no setters needed
-record Track(TrackId id, String title, String artist, Duration duration) {}
+// ✅ value object — immutable, validated at construction
+record Track(TrackId id, String title, String artist, long durationMs) {}
 ```
 
-Map relationships with a box-and-arrow sketch (no UML needed):
-- Which entity **orchestrates** workflow?
-- Which entity **owns** the state being changed?
-- What direction do the dependencies point?
+Map relationships between data models with a box-and-arrow sketch (no UML needed):
+- What does each model own directly?
+- Where is ordering or position captured?
 
-**Principle checks:**
-- **SRP:** Can you describe what each entity does in one sentence? If not, split it.
-- **DIP:** Orchestrators depend on interfaces, not concrete classes.
-- **SoC:** State (what the system *is doing*) and mode (what it does *when done*) are separate concerns — don't conflate them. Example: `PlayerState` vs `RepeatMode`.
+**Do not put services or state machines here.** `MusicPlayer` is not a data model — it's never persisted.
 
 ---
 
-## Phase 3 — Class Design (~10–15 min)
+## Phase 3 — Class & Interface Design (~10–15 min)
 
-For each entity define **state** (fields) and **behaviour** (methods). Rule: keep rules with the entity that owns the relevant state.
+Design the **behavioural layer** — services, orchestrators, state machines, enums, interfaces. These operate on the data models from Phase 2 but are never stored themselves.
+
+Start by naming the pattern before writing any class.
+
+For each service/orchestrator define **runtime state** (fields) and **behaviour** (methods). Rule: keep rules with the class that owns the relevant state.
 
 ### Step 3a — Make Illegal States Unrepresentable
 
