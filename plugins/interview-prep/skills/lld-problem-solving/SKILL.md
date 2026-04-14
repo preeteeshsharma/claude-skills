@@ -17,16 +17,41 @@ Five phases in ~35 minutes. Principles and SOLID checks are woven into each phas
 
 ## Phase 1 — Requirements (~5 min)
 
-Clarify before touching entities. Ask:
-- What operations must the system support?
-- What are the valid state transitions? What transitions are illegal?
-- What's explicitly **out of scope**? (Write this down — prevents drift.)
+Three explicit steps — do not skip any.
+
+### Step 1a — Receive and restate the problem
+
+The interviewer gives a broad prompt (e.g., *"Design a music player supporting play, next/prev, and repeat modes"*). Before asking anything, restate it in your own words in one sentence to confirm you've understood the scope.
+
+### Step 1b — Ask clarifying questions
+
+Ask targeted questions across these categories. Pick the 3–4 most relevant; don't ask all of them or it reads as stalling.
+
+| Category | Questions to consider |
+|----------|-----------------------|
+| **Functional scope** | What operations must be supported? What's explicitly excluded? |
+| **Edge cases & boundaries** | What happens at the last/first item? What if the collection is empty? |
+| **State transitions** | Which transitions are illegal? What does calling X on state Y do? |
+| **Concurrency** | Do multiple users/threads access shared state? What consistency is required? |
+| **Persistence** | In-memory only, or does state survive restarts? |
+| **Error handling** | Reject invalid input, or silently ignore? |
+| **Pricing / auth / payment** | Almost always out of scope — confirm explicitly |
+
+**Rule:** If the interviewer says "use your judgement" — state your assumption aloud and move on. Don't stall.
+
+### Step 1c — Produce finalized requirements
+
+Output two lists before touching entities:
+
+**IN scope:**
+- [one sentence per requirement]
+
+**OUT of scope:**
+- [explicitly confirmed exclusions]
 
 **Principle checks:**
 - **YAGNI:** If the interviewer didn't ask for it, don't design for it.
-- **KISS:** Can each requirement be stated in one sentence? If not, clarify.
-
-Output: A short bulleted IN-scope list + a separate OUT-of-scope list.
+- **KISS:** Can each requirement be stated in one sentence? If not, clarify further.
 
 ---
 
