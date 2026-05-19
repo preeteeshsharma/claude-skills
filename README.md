@@ -29,6 +29,26 @@ Socratic tutor for working through interview questions compiled by `interview-re
 
 ---
 
+### java-api-client
+
+Abstract WebClient pattern with OkHttp, retry with exponential backoff + jitter, HTTP status code handling (4xx fail fast, 5xx retry), and non-idempotent POST warnings.
+
+**Triggers on:** OkHttp, retry backoff, HTTP status codes, abstract web client, unreliable APIs.
+
+### polling
+
+Poll-until-done pattern for async jobs. Covers terminal vs intermediate states, timeout handling, and how polling composes with retry.
+
+**Triggers on:** poll until done, async job status, terminal state, SUCCESS/FAILED check.
+
+### pipeline-orchestration
+
+Multi-step pipeline with `StepResult<T>` sealed types, state machine discipline, failure shapes per step, and orchestrator pattern. Covers Pipeline vs CoR vs Decorator distinction.
+
+**Triggers on:** pipeline pattern, StepResult, state machine, fail forward, ordered steps, ingestion pipeline.
+
+---
+
 ## Installing (Claude Code)
 
 Edit `%USERPROFILE%\.claude\settings.json` and add these two entries:
@@ -44,7 +64,8 @@ Edit `%USERPROFILE%\.claude\settings.json` and add these two entries:
     }
   },
   "enabledPlugins": {
-    "interview-prep@claude-skills": true
+    "interview-prep@claude-skills": true,
+    "java-patterns@claude-skills": true
   }
 }
 ```

@@ -1,0 +1,12 @@
+{
+  "name": "java-patterns",
+  "description": "Java coding patterns — resilient API clients, pipeline orchestration, type system best practices",
+  "version": "1.0.0",
+  "author": {
+    "name": "preeteeshsharma",
+    "email": ""
+  },
+  "homepage": "https://github.com/preeteeshsharma/claude-skills",
+  "repository": "https://github.com/preeteeshsharma/claude-skills",
+  "license": "MIT"
+}

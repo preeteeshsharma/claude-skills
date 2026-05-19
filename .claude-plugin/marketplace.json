@@ -17,6 +17,17 @@
         "name": "preeteeshsharma",
         "email": ""
       }
+    },
+    {
+      "name": "java-patterns",
+      "description": "Java coding patterns — resilient API clients, polling, pipeline orchestration",
+      "version": "1.0.0",
+      "source": "./plugins/java-patterns/",
+      "category": "productivity",
+      "author": {
+        "name": "preeteeshsharma",
+        "email": ""
+      }
     }
   ]
 }
